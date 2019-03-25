@@ -66,25 +66,20 @@
 # 
 #
 class Solution:
-    EXCHANGE_TABLE = {}
-
     def romanToInt(self, s: str) -> int:
-        index = 0
-        while index < len(s):
-            c = s[index]
-            if c == 'I':
-                pass
-            elif c == 'V':
-                pass
-            elif c == 'X':
-                pass
-            elif c == 'L':
-                pass
-            elif c == 'C':
-                pass
-            elif c == 'D':
-                pass
-            elif c == 'M':
-                pass
-            
+        roman_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 }
+        pow = 0
+        number = 0
+        s = s.upper()
+        length = len(s)
+        for i in range(0, length):
+            item = s[length - i - 1]
+            if pow > roman_dict[item]:
+                number -= roman_dict[item]
+            else:
+                number += roman_dict[item]
+                pow = roman_dict[item]
+        return number
 
+# s = Solution()
+# print(s.romanToInt('MMMCDXLIV'))
