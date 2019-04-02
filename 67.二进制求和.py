@@ -32,17 +32,36 @@ class Solution:
         s1 = a[::-1]        
         s2 = b[::-1]        
         add_value = 0
-        for i in range(0, min(len(s1), len(s2))):
-            v1 = int(s1[i])
-            v2 = int(s2[i])
+        min_index = min(len(s1), len(s2))
+        index = 0
+        while index < min_index:
+            v1 = int(s1[index])
+            v2 = int(s2[index])
             t = v1 + v2 + add_value
             r = str(int(t % 2)) + r
             add_value = int(t / 2)
+            index += 1
+        
+        t = index
+        while t < len(s1):
+            v = int(s1[t]) + add_value
+            r = str(int(v % 2)) + r
+            add_value = int(v / 2)
+            t += 1
+        
+        t = index
+        while t < len(s2):
+            v = int(s2[t]) + add_value
+            r = str(int(v % 2)) + r
+            add_value = int(v / 2)
+            t += 1
+        
         if 0 != add_value:
             r = str(add_value) + r
+            
         return r
 
-s = Solution()
-print(s.addBinary("1010", "1011"))
-print(s.addBinary("11", "1"))
+# s = Solution()
+# print(s.addBinary("1010", "1011"))
+# print(s.addBinary("11", "1"))
 
