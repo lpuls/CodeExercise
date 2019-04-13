@@ -57,5 +57,23 @@
 
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
-        
+        if not p and not q:
+            return True
+        if (not p and q) or (p and not q) or (p.val != q.val):
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+
+# root1 = TreeNode(0)
+# node = root1
+# node.left = TreeNode(1)
+# node.right = TreeNode(10)
+
+# root2 = TreeNode(0)
+# node = root2
+# node.left = TreeNode(1)
+# node.right = TreeNode(11)
+
+# s = Solution()
+# print(s.isSameTree(root1, root2))
 
