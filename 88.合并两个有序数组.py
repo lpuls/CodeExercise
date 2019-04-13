@@ -30,6 +30,10 @@
 # 
 #
 class Solution:
+    def move_list(self, nums, start, value):
+        for index in range(start, len(nums)):
+            nums[index], value = value, nums[index]
+
     # def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
     def merge(self, nums1, m, nums2, n) -> None:
         """
@@ -38,23 +42,24 @@ class Solution:
         nums1_index = 0
         nums2_index = 0
 
-        self.reset_list(nums1)
-        while nums2_index < n:
-            if 0 == nums1[nums1_index]:
-                nums1[nums1_index] = nums2[nums2_index]
+        while nums1_index < m and nums2_index < n:
+            if nums1[nums1_index] > nums2[nums2_index]:
+                self.move_list(nums1, nums1_index, nums2[nums2_index])
+                m += 1
                 nums2_index += 1
-            else:
-                if nums1[nums1_index] > nums2[nums2_index]:
-                    self.move_list(nums1, nums1_index, nums2[nums2_index])
-                    nums2_index += 1
             nums1_index += 1
 
-        print(nums1)
+        while nums2_index < n:
+            nums1[nums1_index] = nums2[nums2_index]
+            nums1_index += 1
+            nums2_index += 1
 
-s = Solution()
-s.merge([1,2,3,0,0,0], 3, [2,5,6], 3)
-s.merge([4,5,6,0,0,0], 3, [1,2,3], 3)
-s.merge([0], 0, [1], 1)
-s.merge([4,0,0,0,0,0], 1, [1,2,3,5,6], 5)
-s.merge([-1,0,0,3,3,3,0,0,0], 6, [1,2,2], 3)
+        # print(nums1)
+
+# s = Solution()
+# s.merge([1,2,3,0,0,0], 3, [2,5,6], 3)
+# s.merge([4,5,6,0,0,0], 3, [1,2,3], 3)
+# s.merge([0], 0, [1], 1)
+# s.merge([4,0,0,0,0,0], 1, [1,2,3,5,6], 5)
+# s.merge([-1,0,0,3,3,3,0,0,0], 6, [1,2,2], 3)
 
