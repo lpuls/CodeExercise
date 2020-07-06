@@ -25,7 +25,17 @@
 # 
 #
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum_hash(self, nums, target):
+        temp = dict()
+        for item in nums:
+            v = target - item
+            if item in temp.keys():
+                return [item, v]
+            else:
+                temp[v] = item
+        return []
+
+    def twoSum_force(self, nums, target):
         for i in range(0, len(nums)):
             first = nums[i]
             scend = target - first
@@ -34,3 +44,9 @@ class Solution:
                     if nums[j] == scend and i != j:
                         return [i, j]
 
+    def twoSum(self, nums, target):
+        return self.twoSum_hash(nums, target)
+
+# s = Solution()
+# r = s.twoSum([1, 2, 3, 4, 5, 6], 11)
+# print(r)

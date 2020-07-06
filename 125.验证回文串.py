@@ -5,25 +5,31 @@
 #
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        front = 0
-        tail = len(s) - 1
-        while front < tail:
-            front_word = s[front]
-            tail_word = s[tail]
+        ascii_a = ord('a')
+        ascii_z = ord('z')
+        ascii_cap_a = ord('a')
+        ascii_cap_z = ord('z')
+        ascii_0 = ord('0')
+        ascii_9 = ord('9')
 
-            while front + 1 < len(s) and not front_word.isalnum():
-                front += 1
-                front_word = s[front]
+        count = 0
+        stack = list()
+        for item in s:
+            ascii_item = ord(item)
+            lower_item = item.lower()
 
-            while tail - 1 >= 0 and not tail_word.isalnum():
-                tail -= 1
-                tail_word = s[tail]
-
-            front += 1
-            tail -= 1
-            if front_word.lower() != tail_word.lower():
-                return False
-        return True
+            if ascii_a <= ascii_item <= ascii_z 
+               or ascii_cap_a <= ascii_item <= ascii_cap_z
+               or ascii_0 <= ascii_item <= ascii_9:
+               
+                if count <= 0:
+                   stack.append(lower_item)
+                elif stack[count - 1] == lower_item:
+                    stack.pop()
+                    count -= 1
+                else:
+                    stack.append(lower_item)
+                    count += 1
 
 s = Solution()
 # print(False, s.isPalindrome('race a car'))
